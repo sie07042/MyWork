@@ -1,0 +1,81 @@
+.gnb{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+.gnb-container{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gnb-left{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.gnb-right{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.gnb-link{
+    color: rgb(79, 70, 229); 
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    position: relative;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+/* gnb 링크 위에 마우스 */
+.gnb-link:hover{
+    color: rgb(67, 56, 202);
+    background: rgba(99, 102, 241, 0.12);
+}
+
+.gnb-link.active{
+    color: rgb(55, 48, 163);
+    background: rgba(99, 102, 241, 0.25);
+}
+
+.auth-link {
+    color: rgb(55, 48, 163);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid rgba(99, 102, 241, 0.6);
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.auth-link:hover{
+    background: rgba(99, 102, 241, 0.9);
+    border-color: rgba(99, 102, 241, 0.9);
+    color: white;
+}
+
+.auth-link.sigup{
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.8);
+    color: rgb(55, 48, 163);
+}
+
+.auth-user{
+    background: rgba(99, 102, 241, 0.8);
+}
