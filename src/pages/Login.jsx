@@ -117,6 +117,7 @@ function Login(){
         }
     }
 
+    // 이메일 또는 비밀번호 입력창의 데이터가 변경될때 실행되는 이벤트 함수
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormData(prev =>({
@@ -125,8 +126,9 @@ function Login(){
         }));
     }
 
-    const handleKakaoLogin =(e) => {
-        e.preventDefault();
+    // 카카오 로그인 요청을 백엔드 서버에 한다.
+    const handleKakaoLogin =() => {
+        window.location.href = '/api/oauth/kakao/login';
     }
 
     return (
@@ -170,8 +172,8 @@ function Login(){
                             <button type="button" 
                             className="kakao-login-button" 
                             onClick={handleKakaoLogin}
-                            disabled={isLoading}>
-                                {isLoading ? '처리중 ...': '카카오 로그인'}
+                            >
+                                카카오 로그인
                             </button>
                         </div>
                         <div className="signup-link">
