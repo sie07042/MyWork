@@ -99,7 +99,7 @@ function Login(){
 
                 // AuthContext에 서버로부터 받은 user 정보와 token을 저장한다
                 // AuthPronvider의 login()함수를 호출
-                login(response.data.data.user, response.data.data.accessToken)
+                login(response.data.data.user, response.data.data.accessToken);
 
                 navigate('/'); // 홈으로 페이지를 이동시킨다
             } else {
@@ -128,7 +128,14 @@ function Login(){
 
     // 카카오 로그인 요청을 백엔드 서버에 한다.
     const handleKakaoLogin =() => {
-        window.location.href = '/api/oauth/kakao/login';
+        // 카카오 oauth 처리 완료한 다음 최종적으로 결과를 받을 callbock url
+        const callbackUrl = `${window.location.origin}/oauth/callback`;
+
+        // URL을 인코딩하여 전달하여야하므로...
+        const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+
+        window.location.href = `/api/oauth/kakao/login?redirectUrl=${encodedCallbackUrl}`;
+        // 위 요청에 대한 응답은 카카오 로그인 페이지 이다... https://accounts.kakao.com/login/?continue=https%3A%2F%2Fkauth.kakao.com%2Foauth%2Fauthorize%3Fclient_id%3Da0c450dd481961ddc4bc6b06483d3534%26redirect_uri%3Dhttp%253A%252F%252Flocalhost%253A8070%252Foauth%252Fkakao%252Fcallback%26response_type%3Dcode%26through_account%3Dtrue%26auth_tran_id%3DvZ6wSdFnZgOyRkxfrmMTtfmDkv55WWGT3OBPbEjwCg0V2AAAAZtdQYud#login
     }
 
     return (
