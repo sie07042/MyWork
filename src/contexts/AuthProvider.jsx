@@ -35,10 +35,14 @@ export function AuthProvider({children}) {
      */
     const logout = async () => {
         try {
-            const response = await axios.post(
-                '/api/logout',      // request url
+            const response = await axios.post('/api/logout',      // request url
                 {},                 // request body
-                { withCredentials: true }
+                { 
+                    headers: {
+                    Authorization: `Bearer ${accessToken}`
+                    },
+                    withCredentials: true 
+                }
             );
     
             if (response.data.success) {
