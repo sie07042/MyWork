@@ -1,0 +1,37 @@
+services:
+# frontend라는 이름의 서비를 정의함
+  frontend:
+  # 컨테이너 이름 설정
+    container_name: auth-front
+
+    build:
+      # 현재 디렉토리를 빌드 대상으로 설정함
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "80:80"
+
+    # # 네트워크 설정
+    # network_mode: bridge
+
+    networks:
+    # front-end가 실행될 network 설정
+      - auth-network
+
+    # 컨테이너 재시작 정책: 수동 중지하지 않는 한 항상 재시작
+    restart:
+      unless-stopped
+
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 38s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+# 네트워크 정의
+networks:
+  auth-network:
+    driver: bridge
+    external: true

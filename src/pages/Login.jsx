@@ -2,7 +2,7 @@ import GNB from "../components/Gnb";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
-import "./signup.css"
+import "./Signup.css"
 import axios from "axios";
 
 function Login(){

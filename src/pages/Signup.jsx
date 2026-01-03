@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import GNB from "../components/Gnb";
 import { useState } from "react";
 import axios from "axios";
-import "./signup.css"
+import "./Signup.css"
 
 function Signup() {
 

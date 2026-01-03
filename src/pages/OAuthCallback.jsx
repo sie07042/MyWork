@@ -3,9 +3,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom'; // 로그인 �
 import { useAuth } from '../hooks/useAuth'; // access token 저장하기 위해
 import axios from 'axios'; // 백엔드 호출용
 
-import './OAuthCallback.css'; //style sheet 불러오기
+import './OauthCallback.css'; //style sheet 불러오기
 
-function OAuthCallback() {
+function OauthCallback() {
 
     const navigate = useNavigate();
 
@@ -120,4 +120,4 @@ function OAuthCallback() {
 
 }
 
-export default OAuthCallback;
+export default OauthCallback;

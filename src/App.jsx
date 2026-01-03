@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Signup from './pages/signup'
+import Signup from './pages/Signup'
 import { AuthProvider } from './contexts/AuthProvider'
-import OAuthCallback from './pages/OauthCallback'
+import OauthCallback from './pages/OauthCallback'
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
               <Route path='/' element={<Home />}/>
               <Route path='/login' element={<Login />}/>
               <Route path='/signup' element={<Signup />}/>
-              <Route path='/oauth/callback' element={<OAuthCallback />}/>
+              <Route path='/oauth/callback' element={<OauthCallback />}/>
             </Routes>
           </BrowserRouter>
       </AuthProvider>
