@@ -42,8 +42,11 @@ function GNB() {
                         ) : isAuthenticated ?(
                             <>
                             {/* 사용자 정보 노출과 로그아웃 버튼*/}
-                            <span>{user.username}님</span>
-                            <button onClick={handleLogout} className=''>로그아웃</button>
+                            <Link to="/profile" className='gnb-user-info'>
+                                <img src={user.profileImage} className='gnb-user-img'/>
+                                <span>{user.username}님</span>
+                            </Link>
+                                <button onClick={handleLogout} className=''>로그아웃</button>
                             </>
                         ) : (
                             <>

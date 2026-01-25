@@ -79,3 +79,21 @@
 .auth-user{
     background: rgba(99, 102, 241, 0.8);
 }
+
+.gnb-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .gnb-user-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgb(99, 102, 241);
+  }

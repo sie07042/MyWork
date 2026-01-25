@@ -130,6 +130,7 @@ function Login(){
     const handleKakaoLogin =() => {
         // 카카오 oauth 처리 완료한 다음 최종적으로 결과를 받을 callbock url
         const callbackUrl = `${window.location.origin}/oauth/callback`;
+        console.log(callbackUrl);
 
         // URL을 인코딩하여 전달하여야하므로...
         const encodedCallbackUrl = encodeURIComponent(callbackUrl);

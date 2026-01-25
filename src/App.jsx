@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import { AuthProvider } from './contexts/AuthProvider'
 import OauthCallback from './pages/OauthCallback'
+import Profile from './pages/Profile'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
               <Route path='/login' element={<Login />}/>
               <Route path='/signup' element={<Signup />}/>
               <Route path='/oauth/callback' element={<OauthCallback />}/>
+              <Route path='/profile' element={<Profile/>}/>
             </Routes>
           </BrowserRouter>
       </AuthProvider>
