@@ -139,9 +139,18 @@ export function useProfileForm(accessToken) {
             let bgImageUrl = previewBackground;
 
             // 이미지 업로드 API 호출을 2번(profileImage, BackgrountImage)
-            // if (selectedFile) {
-            //     const uploadeUrl = 
-            // }
+            if (selectedFile) {
+                const uploadeUrl = await uploadImage(selectedFile);
+                if (uploadeUrl) profileImageUrl = uploadeUrl;
+            }
+
+            if (selectedBackgroundFile) {
+                const uploadeUrl = await uploadImage(selectedBackgroundFile);
+                if (uploadeUrl) bgImageUrl = uploadeUrl;
+            }
+
+            if (profileImageUrl?.startsWith('data:')) profileImageUrl = null;
+            if (bgImageUrl?.startsWith('data:')) bgImageUrl = null;
 
             // requst Data 구성하기 
             const requstData = {
@@ -176,6 +185,58 @@ export function useProfileForm(accessToken) {
 
     }
 
+    // 이미지 처리 함수
+    const handleImageSelect = (file, type) => {
+        if (!file) return false;
+
+        // 이미지 파일 유효성 검사
+        if (!file.type.startsWith('image/')) {
+            alert('이미지 파일만 선택 가능합니다');
+            return false;
+        }
+
+        const maxSize = 1024 * 1024 * 2;
+        if (file.size > maxSize){
+            alert('파일 크기는 2MB 이하여야 합니다.');
+            return false;
+        }
+
+        // 파일 저장 및 미리보기 생성
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            if(type==='profile') {
+                setSelectedFile(file);
+                setPreviewImage(reader.result);
+            } else {
+                setSelectedBackgroundFile(file);
+                setPreviewBackground(reader.result);
+            }
+        }
+        reader.readAsDataURL(file);
+
+        return true;
+    };
+
+    // 이미지 업로드
+    const uploadImage = async (file) => {
+        if(!file) return null;
+
+        const uploadFormData = new FormData();
+        uploadFormData.append('file',file);
+
+        try {
+            const response = await axios.post('/api/upload/image', uploadFormData,{
+                headers: {'Authorization': `Berer $(accessToken)`},
+                withCredentials: true
+            });
+
+            return response.data?.data?.imageUrl || null;
+        } catch (error) {
+            console.log('이미지 업로드 실패: ', error);
+            return null;
+        }
+    };
+
     // 반환값 정의
     return {
         // 상태 
@@ -188,7 +249,9 @@ export function useProfileForm(accessToken) {
 
         // 핸들러
         handleChange,
-        submitProfile
+        submitProfile,
+        handleImageSelect,
+        uploadImage
     };
 
 }

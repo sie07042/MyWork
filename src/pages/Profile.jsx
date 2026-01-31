@@ -3,6 +3,7 @@ import GNB from "../components/Gnb";
 import { useAuth } from "../hooks/useAuth";
 import './Profile.css'
 import { useProfileForm } from "../hooks/UserProfileForm";
+import ProfileImageSection from "../components/ProfileImageSection";
 
 function Profile() {
     
@@ -21,6 +22,9 @@ function Profile() {
         errors,
         isLoading,
         isLoadingProfile,
+        previewImage,
+        previewBackground,
+        handleImageSelect,
         handleChange,
         submitProfile
     } = useProfileForm(accessToken);
@@ -82,7 +86,11 @@ function Profile() {
                  <h1>프로필 수정</h1>
 
                  <form action={handleSubmit} className="profile-form">
-                   
+                    <ProfileImageSection 
+                        previewImage={previewImage}
+                        previewBackground={previewBackground}
+                        onImageSelect={handleImageSelect}
+                    />
                     <FormField
                         label="닉네임"
                         name="name"
